@@ -26,7 +26,7 @@ struct Challenge {
         var bgSur = try await pics.getImage()!
 
         // Get verse text and verse number
-        var verseSur = Bible.getVerseSur(width: bgSur.w / 2)!
+        var verseSur = Bible.getVerseSur(width: bgSur.w / 2)
 
         // Create a window and get it's renderer
         let window = SDL_CreateWindow(
@@ -39,14 +39,14 @@ struct Challenge {
 
         // Convert the background and verse text into a texture
         let bgTex = SDL_CreateTextureFromSurface(renderer, &bgSur)
-        let verseTex = SDL_CreateTextureFromSurface(renderer, &verseSur)
+        let verseTex = SDL_CreateTextureFromSurface(renderer, &verseSur!)
 
         // Figure out where we're gonna put the verse texture
         var verseRect = SDL_Rect(
-            x: (bgSur.w / 2) / 2 - (verseSur.w / 2),
-            y: (bgSur.h / 2) / 2 - (verseSur.h / 2),
-            w: verseSur.w,
-            h: verseSur.h
+            x: (bgSur.w / 2) / 2 - (verseSur!.w / 2),
+            y: (bgSur.h / 2) / 2 - (verseSur!.h / 2),
+            w: verseSur!.w,
+            h: verseSur!.h
         )
 
         // Start event loop
